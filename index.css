@@ -3,7 +3,7 @@ body{
 }
 form{
   //  border: 1px solid black;
-    left: 65%;
+    left: 67%;
     top: 50%;
     margin-left: -25%;
     position: absolute;
@@ -17,5 +17,8 @@ input[type=text], input[type=password] ,input[type=date]{
     display: inline-block;
     border: none;
     background: #f0f0f0;
+   // background: gray;
+    //color: white;
+
 }
 

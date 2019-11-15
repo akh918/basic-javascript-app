@@ -7,13 +7,6 @@ function init(){
     var emails =sessionStorage.getItem("email");
     //  var pwd =sessionStorage.getItem("password");
     //var fname =sessionStorage.getItem("firstName");
-    /*
-            document.write("first name is::"+fname);
-    document.write("last name is::"+lname);
-    document.write("date of birth is::"+dob);
-    document.write("email is::"+emails);
-    document.write("pasword is::"+pwd);
-*/
 
     //adding sessionstorage data into table by using td's id
     document.getElementById('t1').innerText = fname;

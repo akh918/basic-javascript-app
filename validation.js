@@ -1,5 +1,6 @@
 
-
+var letter = /[a-zA-Z]/;
+var number = /[0-9]/;
 //storing field data into variables
 var firstName = document.myform.fname;
 var lastName = document.myform.lname;
@@ -7,7 +8,8 @@ var dob = document.myform.dob;
 var email = document.myform.email;
 var password = document.myform.pass;
 var repass = document.myform.repass;
-var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z_\-\.])+\.([A-Za-z]{2,4})$/;
+//var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z_\-\.])+\.([A-Za-z]{2,4})$/;
+var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 //storing error message id into variables
 var p1 = document.getElementById("p1");
@@ -27,7 +29,6 @@ password.addEventListener("blur", pVerify ,true);
 
 //validation function
 function validateform(){
-//var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
 // Storing the value above into sessionStorage
     sessionStorage.setItem("firstName", firstName.value);
@@ -67,17 +68,19 @@ function validateform(){
         document.getElementById("p5").innerHTML="";
     }
 
+    if (password.value.length < 4 || !letter.test(password.value) || !number.test(password.value)) {
+        p5.innerHTML = "* password should be at least <br/>1 lowercase character<br>1 uppercase character<br>1 digit and<br>minimum 6 characters ";
+        return false;
+    }
 
     if(repass.value== ""){
         document.getElementById("p6").innerHTML="* this field is manadatory";
         //alert("email is required");
         return false;
     }
-
     else{
         document.getElementById("p6").innerHTML="";
     }
-
 
     if(password.value == repass.value){
         return true;
@@ -86,8 +89,6 @@ function validateform(){
         document.getElementById("p6").innerHTML="* password and confirm password should be same";
         return false;
     }
-    //myform.sub.disabled = true;
-
     return true;
 }
 
@@ -146,6 +147,21 @@ function eVerify(){
 function pVerify(){
     if(password.value == ""){
         p5.innerHTML = "* this field is manadatory";
+        return false;
+    }
+   /* if(password.value.match(/[a-z]/g) && password.value.match(/[A-Z]/g) && password.value.match(/[0-9]/g) && password.value.match(/[^a-zA-Z\d]/g)){
+        return true;
+    }*/
+   /* if((/[a-z]/g).test(password.value)==false && (/[A-Z]/g).test(password.value)==false && (/[0-9]/g).test(password.value)==false && (/[^a-zA-Z\d]/g).test(password.value)==false && password.value.length < 5){
+        p5.innerHTML = "* At least 1 capital letter<br/> 1 small letter<br/>1 digit and 1 special letter ";
+        return true;
+    }*/
+   /* if(password.value.length < 5){
+        p5.innerHTML = "* Minimum 6 characters required";
+        return false;
+    }*/
+    if (password.value.length < 4 || !letter.test(password.value) || !number.test(password.value)) {
+        p5.innerHTML = "* password should be at least  <br/>1 lowercase character<br>1 uppercase character<br>1 digit and<br>minimum 6 characters ";
         return false;
     }
     if(password.value != ""){
